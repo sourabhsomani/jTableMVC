@@ -1,0 +1,22 @@
+﻿@{
+    ViewBag.Title = "Marks Details";
+}
+
+<h2>Marks Details</h2>
+
+<div id="MarksTable"></div>
+
+@section scripts{
+    <!--Adding Theme for jTable Grid-->
+    <!--You can choose any type of theme from the themes folder-->
+    <link href="~/Scripts/jtable/themes/metro/blue/jtable.min.css" rel="stylesheet" />
+    @*<link href="~/Content/themes/base/jquery-ui.css" rel="stylesheet" />*@
+    <link href="http://jtable.org/Content/themes/metroblue/jquery-ui.css" rel="stylesheet" type="text/css" />
+    <script src="~/Scripts/jquery-ui-1.9.2.min.js"></script>
+
+    <!--Adding jTable Plugin-->
+    <script src="~/Scripts/jtable/jquery.jtable.min.js"></script>
+
+    <!--Adding our script file-->
+    <script src="~/Scripts/Script.js"></script>
+}
