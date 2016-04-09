@@ -11,7 +11,7 @@ namespace jTableMVC.Entities
         [Key]
         public string ID { get; set; }
         [Required]
-        public string RollNumber { get; set; }
+        public int RollNumber { get; set; }
         [Required]
         public string Name { get; set; }
         [Required]

@@ -17,14 +17,38 @@ namespace jTableMVC.Controllers
         }
 
         [HttpPost]
-        public JsonResult GetStudentMarks()
+        public JsonResult GetStudentMarks(int jtStartIndex = 0, int jtPageSize = 0, string jtSorting = null)
         {
             ApplicationDbContext db = new ApplicationDbContext();
             try
             {
                 List<Marks> lstMarks = new List<Marks>();
                 lstMarks = db.Marks.ToList();
-                return Json(new { Result = "OK", Records = lstMarks });
+                switch (jtSorting)
+                {
+                    case "RollNumber ASC":
+                        lstMarks = lstMarks.OrderBy(t => t.RollNumber).ToList();
+                        break;
+                    case "RollNumber DESC":
+                        lstMarks = lstMarks.OrderByDescending(t => t.RollNumber).ToList();
+                        break;
+                    case "Name ASC":
+                        lstMarks = lstMarks.OrderBy(t => t.Name).ToList();
+                        break;
+                    case "Name DESC":
+                        lstMarks = lstMarks.OrderByDescending(t => t.Name).ToList();
+                        break;
+                    case "MarksObtained ASC":
+                        lstMarks = lstMarks.OrderBy(t => t.MarksObtained).ToList();
+                        break;
+                    case "MarksObtained DESC":
+                        lstMarks = lstMarks.OrderByDescending(t => t.MarksObtained).ToList();
+                        break;
+                }
+
+                lstMarks = lstMarks.Skip(jtStartIndex).Take(jtPageSize).ToList();
+                int TotalRecords = db.Marks.Count();
+                return Json(new { Result = "OK", Records = lstMarks, TotalRecordCount = TotalRecords });
             }
             catch (Exception ex)
             {
